@@ -36,11 +36,10 @@ namespace TicTacToe
                 }
 
                 btnClick.Enabled = false;
+
+            playerTurn = !playerTurn;
+            checkWin();
                 
-                checkWin();
-                playerTurn = !playerTurn;
-
-
 
         }
 
@@ -90,7 +89,7 @@ namespace TicTacToe
 
         private void Win()
         {
-            if (playerTurn) { MessageBox.Show($"X is the winner!"); }
+            if (!playerTurn) { MessageBox.Show($"X is the winner!"); }
             else { MessageBox.Show($"O is the winner!"); }
 
             Reset();
@@ -98,17 +97,19 @@ namespace TicTacToe
 
         private void Reset()
         {
+
             foreach(Control button in Controls)
             {
                 if(button != btnNG)
                 {
                     button.Enabled = true;
                     button.Text = "";
-                }
-
-                turnCount = 0;
-                playerTurn = true;
+                }        
             }
+
+
+            playerTurn = true;
+            turnCount = 0;
         }
 
         private void btnNG_Click(object sender, EventArgs e)
